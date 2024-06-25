@@ -10,8 +10,6 @@ import About from './components/About';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
-
-// let name = "Harry"
 function App() {
 
   const [mode, setMode] = useState("light");//wheather dark mode is enable or not
@@ -31,24 +29,25 @@ function App() {
       setAlert(null);
     }, 1500);
   }
-
+  
   const toggleMode = () => {
+    
 
-    if (mode === "light") {
-      setMode("dark")
-      document.body.style.backgroundColor = "#042743";
-
-      showAlert("Dark Mode has been enabled", "success");
-
-      document.title = "TexUtils - Dark Mode";
-    }
-    else {
+    if (mode === "dark") {
       setMode("light")
       document.body.style.backgroundColor = "white";
 
       showAlert("Light Mode has been enabled", "success");
 
-      document.titlr = "TexUtils - Light Mode";
+      // document.title = "TexUtils - Dark Mode";
+    }
+    else {
+      setMode("dark")
+      document.body.style.backgroundColor = "#042743";
+
+      showAlert("Dark Mode has been enabled", "success");
+
+      // document.titlr = "TexUtils - Light Mode";
     }
   }
 
@@ -56,7 +55,6 @@ function App() {
     <>
       {/* <Navbar title="TextUtils" aboutText="About TextUtils" homeText="Home TextUtils" mode={mode} toggleMode={toggleMode} /> */}
       <Router>
-        
         <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
 
         <Alert alert={alert} />
@@ -65,9 +63,10 @@ function App() {
 
           <Routes>
 
-            <Route exact path="/" element={< TextForm showAlert={showAlert} heading="Enter text here" mode={mode} />} />
+            <Route exact path="/" element={< TextForm showAlert={showAlert} heading="Texutils - Word & Character Counter, Upper to Lower & Lower to Upper, Remove extra spaces"
+             mode={mode} />} />
 
-            <Route exact path="/about" element={< About />} />
+            <Route exact path="/about" element={< About  mode={mode} />} />
 
 
           </Routes>
